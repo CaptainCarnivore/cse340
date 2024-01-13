@@ -4,3 +4,157 @@
 *:after {
   box-sizing: border-box;
 }
+
+
+body {
+  background-image: none;
+  font-family: 'Monserrat', sans-serif;
+}
+
+#wrapper {
+  background: white;
+  width: 100%;
+}
+
+
+/******* Nav *******/ 
+
+nav {
+  width: 100%;
+  padding: 12px;
+  background-color: #242332;
+  color: white;
+}
+
+nav ul{
+  display: flex;
+	flex-direction: row;
+  margin: auto;
+  align-items: center;
+  
+}
+nav ul li {
+  width: 20%;
+  text-decoration: none;
+  list-style: none;
+  text-align: center;
+  
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+}
+
+/******* Hero *******/ 
+
+#hero {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  background-color: none;
+  padding: 10px;
+  max-width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+#hero-box {
+  grid-column: 1/3;
+  grid-row: 1/3;
+  
+}
+#hero-msg {
+  color: #05bce0;
+  width: 40%;
+  max-width: 300px;
+  grid-column: 1/3;
+  grid-row: 1/2;
+  background:rgba(255,255,255,0.6);
+  z-index: 1;
+  align-items: center;
+}
+
+#hero-img {
+  width: 100%;
+  z-index: -1;
+  grid-column: 1/3;
+  grid-row: 1/3;
+  padding-left: 60px;
+}
+
+#own-button {
+  max-width: 80%;
+}
+
+/******* Header *******/ 
+#top-header {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  margin-bottom: 5%;
+  padding-top: 15px;
+}
+
+.siteName {
+  font-size: 50px;
+}
+
+.siteName a {
+  text-decoration: none;
+  color: black;
+}
+
+#tools {
+  text-align: right;
+  font-size: 20px;
+  margin-top: 5px;
+}
+
+#tools a {
+  text-decoration: none;
+  color: black;
+}
+
+/******* body *******/
+#body-content {
+  display: flex;
+  flex-direction: column;
+}
+
+
+
+#delorean-reviews li {
+  margin: 10px 0;
+  font-size: large;
+  
+}
+
+#delorean-upgrades-grid {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: 50% 50%;
+  gap: 15px;
+  justify-items: center;
+  padding: 10px;
+}
+
+.delorean-upgrades-card {
+  margin: auto;
+  text-align: center;
+  width: 100%;
+  height: 125px;
+
+}
+
+.delorean-upgrades-card a{
+  font-size: larger;
+  color: #0c0bef;
+}
+
+.delorean-upgrades-card-img {
+  background-color: #01b0d3;
+  height: 100px;
+  outline: solid 1px;
+}
+
+.delorean-upgrades-card-img img {
+  padding: 10px;
+}

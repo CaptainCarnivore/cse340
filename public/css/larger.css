@@ -1,0 +1,49 @@
+@media screen and (min-width: 800px) {
+
+  
+body {
+  background-image: url("/../images/site/checkerboard.jpg");
+  background-size:30em 30em;
+  background-repeat: repeat;
+}
+
+#wrapper {
+  background: white;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 900px;
+  padding: 10px;
+  border-radius: 2%;
+  border-style: solid;
+  border-width: 5px;
+  border-color: #05bce0;
+}
+
+#body-content {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  max-width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#delorean-reviews {
+  grid-column: 2/3;
+  grid-row: 1/2;
+}
+
+#delorean-reviews h1{
+  text-align: center;
+}
+
+#delorean-reviews ul {
+  padding-top: 10%;
+}
+
+#delorean-upgrades {
+  grid-column: 1/2;
+  grid-row: 1/2;
+}
+
+
+}
