@@ -11,7 +11,7 @@ body {
   background: white;
   margin-left: auto;
   margin-right: auto;
-  max-width: 900px;
+  max-width: 1500px;
   padding: 10px;
   border-radius: 2%;
   border-style: solid;
@@ -45,5 +45,49 @@ body {
   grid-row: 1/2;
 }
 
+/******* Detail Page *******/
+
+#vehicle {
+  display: grid;
+  grid-template-columns: 65% 25%;
+  gap: 5px;
+  text-align: center;
+  background:rgba(18, 163, 182, 0.63);
+  padding: 15px;
+  border-radius: 15%;
+  border: solid #05bce0;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 90%;
+}
+
+#vehicleImg {
+  columns: 1/2;
+}
+
+#vehicleImg img {
+  max-width: 100%;
+  border-radius: 15%;
+  border: solid #05bce0;
+}
+
+#vehicleDetails {
+  columns: 2/3;
+  background:rgb(255, 255, 255);
+  padding: 15px;
+  border-radius: 15%;
+  border: solid #05bce0;
+  margin-right: 20%;
+  margin-left: -5%;
+  min-width: 250px;
+}
+
+#vehicleDescription {
+  text-align: left;
+}
+
+#vehicleDescription h4 {
+  text-align: center;
+}
 
 }

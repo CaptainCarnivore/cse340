@@ -1,6 +1,8 @@
 const invModel = require("../models/inventory-model")
 const Util = {}
 
+
+
 /* ************************
  * Constructs the nav HTML unordered list
  ************************** */
@@ -57,7 +59,32 @@ Util.buildClassificationGrid = async function(data){
   return grid
 }
 
+/* **************************************
+* Build the item detail view HTML
+* ************************************ */
 
+Util.buildItemDetailView = async function(data){
+  let detail
+  if(data){
+    detail = '<section id="vehicle">'
+    detail += '<div id="vehicleImg">'
+    detail += '<img id="vehImg" src="' + data.inv_image + '" alt="Image of ' + data.inv_year + ' ' + data.inv_make + ' ' + data.inv_model
+    + '">' 
+    detail += '</div>'
+    detail += '<div id="vehicleDetails">'
+    detail += '<div id="vehicleStats"><h3>$' + data.inv_price + ' | ' + data.inv_miles.toLocaleString() + ' Miles</h3>'
+    + '</div>'
+    detail += '<div id="vehicleDescription">' + '<h4>' + data.inv_color + ' ' + data.classification_name + '</h4>'
+    + data.inv_description
+    + '</div>'
+
+    detail += '</div>'
+    detail += '</section>'
+  } else {
+    detail += '<p class="notice">Sorry, no matching vehicle could be found.</p>'
+  }
+  return detail
+}
 
 /* ****************************************
  * Middleware For Handling Errors

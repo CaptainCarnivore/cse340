@@ -158,3 +158,66 @@ nav a {
 .delorean-upgrades-card-img img {
   padding: 10px;
 }
+
+/******* Classification Grid *******/
+
+#inv-display {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 300px);
+  list-style: none;
+  gap: 10px;
+  justify-content: center;
+  
+}
+
+#inv-display li img {
+  max-width: 90%;
+  height: 150px;
+  padding-top: 5px;
+}
+
+#inv-display li {
+  height: 300px;
+  align-items: center;
+  text-align: center;
+  border: solid #242332;
+}
+
+
+
+/******* Detail Page *******/
+
+#vehicle {
+  text-align: center;
+  background:rgba(18, 163, 182, 0.63);
+  padding: 15px;
+  border-radius: 15%;
+  border: solid #05bce0;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 90%;
+}
+
+#vehicleImg img {
+  max-width: 100%;
+  border-radius: 15%;
+  border: solid #05bce0;
+}
+
+#vehicleDetails {
+  background:rgb(255, 255, 255);
+  padding: 25px;
+  border-radius: 15%;
+  border: solid #05bce0;
+  margin-right: auto;
+  margin-left: auto;
+  min-width: 250px;
+}
+
+#vehicleDescription {
+  text-align: left;
+}
+
+#vehicleDescription h4 {
+  text-align: center;
+}
