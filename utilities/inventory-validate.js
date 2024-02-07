@@ -64,7 +64,7 @@ validate.checkInvData = async (req, res, next) => {
         res.render("inventory/add-inventory", {
             errors, title: "Add inventory",
             nav,
-            inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color,selectList
+            inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color, classification_id, selectList
         })
         return
     }

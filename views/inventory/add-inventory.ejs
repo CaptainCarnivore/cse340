@@ -28,9 +28,9 @@
     <input type="text" id="invImage" name="inv_image" hidden value="/images/vehicles/no-image.png">
     <input type="text" id="invThumbnail" name="inv_thumbnail" hidden value="/images/vehicles/no-image-tn.png">
     <label for="invPrice">Price:</label><br>
-    <input type="number" id="invPrice" name="inv_price" required value="<%= locals.inv_price %>"><br>
+    <input type="number" id="invPrice" name="inv_price" required min="1" value="<%= locals.inv_price %>"><br>
     <label for="invMiles">Miles:</label><br>
-    <input type="number" id="invMiles" name="inv_miles" required value="<%= locals.inv_miles %>"><br>
+    <input type="number" id="invMiles" name="inv_miles" required min="1" value="<%= locals.inv_miles %>"><br>
     <label for="invColor">Color:</label><br>
     <input type="text" id="invColor" name="inv_color" required value="<%= locals.inv_color %>"><br>
     <label for="invClassification">Classification:</label><br>

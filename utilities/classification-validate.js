@@ -10,7 +10,7 @@ validate.classNameRules = () => {
             .custom(async (classifcation_name) => {
                 const classExists = await invModel.checkExistingClassification(classifcation_name)
                 if (classExists){
-                    throw new Error("There is already a classification with that name! Please use a classificaiton that does not already exist.")
+                    throw new Error("There is already a classification with that name! Please use a classification that does not already exist.")
                 }
             })
             .custom(async (classifcation_name) => {
