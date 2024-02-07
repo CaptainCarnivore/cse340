@@ -86,6 +86,19 @@ Util.buildItemDetailView = async function(data){
   return detail
 }
 
+/* ************************
+ * Constructs the Select Classification for Add Inventory
+ ************************** */
+Util.getClassSelect = async function (req, res, next) {
+  let selData = await invModel.getClassifications()
+  let selList = "<select id='invClassification' name='classification_id' >"
+  selData.rows.forEach((row) => {
+    selList += "<option value='" + row.classification_id + "'>" + row.classification_name + "</option>"
+  })
+  selList += "</select>"
+  return selList
+}
+
 /* ****************************************
  * Middleware For Handling Errors
  * Wrap other function in this for 

@@ -1,0 +1,23 @@
+<%# Unit 4, Assignment %>
+
+<% if (title) { %>
+  <h1><%= title %></h1>
+  <% } else {
+    res.redirect('/')
+  } %>
+
+<%- messages() %>
+
+<% if (errors) { %>
+<ul class="notice">
+<% errors.array().forEach(error => { %>
+ <li><%= error.msg %></li>
+<%  }) %>
+</ul>
+<% } %>
+
+<div id="additionMenu">
+<span id="addMenuClass"><a title="Add classification" href="/inv/add-classification">Add classification</a><br></span>
+
+<span id="addMenuInv"><a title="Add inventory" href="/inv/add-inventory">Add inventory</a></span>
+</div>
