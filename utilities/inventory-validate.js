@@ -8,19 +8,13 @@ validate.invDataRules = () => {
         body("inv_model").isAlpha('en-US', {ignore: ' '})
             .trim()
             .custom(async (inv_model) => {
-                const invExists = await invModel.checkExistingInventory(inv_model)
-                if (invExists){
-                    throw new Error("There is already an inventory item with that model! Please use a vehicle with a model that does not already exist in the database.")
-                }
-            })
-            .custom(async (inv_model) => {
-                const checkAlphaNum = new RegExp("^[a-zA-Z0-9]*$")
+                const checkAlphaNum = new RegExp("^[a-zA-Z0-9 ]*$")
                 if (!inv_model.match(checkAlphaNum)) {
                     throw new Error("Please keep the vehicle model to alphanumeric (Aa-Zz, 0-9) only!")
                 }
             }),
         body("inv_make").trim().custom(async (inv_make) => {
-            const checkAlphaNum = new RegExp("^[a-zA-Z0-9]*$")
+            const checkAlphaNum = new RegExp("^[a-zA-Z0-9 ]*$")
             if (!inv_make.match(checkAlphaNum)) {
                 throw new Error("Please keep the vehicle make to alphanumeric (Aa-Zz, 0-9) only!")
             }
@@ -53,7 +47,7 @@ validate.invDataRules = () => {
 
     ]
 }
-
+// Checks to see if inv data exists
 validate.checkInvData = async (req, res, next) => {
     const {  inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color, classification_id } = req.body
     let errors = []
@@ -70,5 +64,24 @@ validate.checkInvData = async (req, res, next) => {
     }
     next();
 }
+// Errors will be directed back to update view
+validate.checkUpdateData = async (req, res, next) => {
+    const { inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color, classification_id, inv_id } = req.body
+    let errors = []
+    const itemName = `${inv_make} ${inv_model}`
+    errors = validationResult(req)
+    if (!errors.isEmpty()) {
+        let nav = await utilities.getNav()
+        let selectList = await utilities.getClassSelect()
+        res.render("inventory/edit-inventory", {
+            errors, title: "Update Inventory: " + itemName,
+            nav,
+            inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color, classification_id, selectList, inv_id 
+        })
+        return
+    }
+    next();
+}
+
 
 module.exports = validate

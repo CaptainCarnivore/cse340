@@ -1,0 +1,46 @@
+<%# Unit 5, Activities %>
+
+<% if (title) { %>
+    <h1><%= title %></h1>
+    <% } else {
+      res.redirect('/')
+    } %>
+  
+  <%- messages() %>
+  
+  <% if (errors) { %>
+  <ul class="notice">
+  <% errors.array().forEach(error => { %>
+   <li><%= error.msg %></li>
+  <%  }) %>
+  </ul>
+  <% } %>
+
+  <form action="/inv/update" method="post" id="updateForm">
+    <label for="invMake">Make:</label><br>
+    <input type="text" id="inv_make" name="inv_make" required value="<%= locals.inv_make %>"><br>
+    <label for="invModel">Model:</label><br>
+    <input type="text" id="invModel" name="inv_model" required value="<%= locals.inv_model %>"><br>
+    <label for="invYear">Year:</label><br>
+    <input type="number" id="invYear" name="inv_year" required min="1900" max="2024" step="1" value="<%= locals.inv_year %>"><br>
+    <label for="invDescription">Description:</label><br>
+    <input type="text" id="invDescription" name="inv_description" required value="<%= locals.inv_description %>"><br>
+    <label for="invImage">Image:</label><br>
+    <input type="text" id="invImage" name="inv_image" value="<%= locals.inv_image %>"><br>
+    <label for="invThumbnail">Thumbnail:</label><br>
+    <input type="text" id="invThumbnail" name="inv_thumbnail" value="<%= locals.inv_thumbnail %>"><br>
+    <label for="invPrice">Price:</label><br>
+    <input type="number" id="invPrice" name="inv_price" required min="1" value="<%= locals.inv_price %>"><br>
+    <label for="invMiles">Miles:</label><br>
+    <input type="number" id="invMiles" name="inv_miles" required min="1" value="<%= locals.inv_miles %>"><br>
+    <label for="invColor">Color:</label><br>
+    <input type="text" id="invColor" name="inv_color" required value="<%= locals.inv_color %>"><br>
+    <label for="invClassification">Classification:</label><br>
+    <%- selectList %><br>
+    <input type="submit" name="submit" value="Update Vehicle" id="submit" disabled>
+    <input type="hidden" name="inv_id"
+      <% if(locals.inv_id) { %> value="<%= locals.inv_id %>"
+      <% } %>>  
+  </form>
+
+  <script src="../../js/inv-update.js"></script>

@@ -23,8 +23,8 @@
     <label for="email">Email:</label><br> 
     <input type="email" id="account_email" name="account_email" required value="<%= locals.account_email %>"><br>
     <label for="password">Password:</label><br>
-    <span>Passwords must be at least 12 characters and contain at least 1 number, 1 capital letter and 1 special character</span><br>
     <input type="password" id="account_password" name="account_password" required pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$"><br><br>
+    <div id="passwordRules">Passwords must be at least 12 characters and contain at least 1 number, 1 capital letter and 1 special character</div><br><br>
     <input type="submit" value="Register">
     <p>Already have an account? <a href="/account/login">Log in</a></p>
   </form> 
