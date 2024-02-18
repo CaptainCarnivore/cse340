@@ -1,0 +1,27 @@
+<%# Unit 6, Assignment %>
+
+
+<% if (title) { %>
+    <h1><%= title %></h1>
+    <% } else {
+      res.redirect('/')
+    } %>
+  
+  <%- messages() %>
+  
+  <% if (errors) { %>
+  <ul class="notice">
+  <% errors.array().forEach(error => { %>
+   <li><%= error.msg %></li>
+  <%  }) %>
+  </ul>
+  <% } %>
+  <p>Confirm Deletion - The delete is permanent.</p>
+  <form action="/review/delete" method="post" id="deleteForm">
+    <label for="accountFirstname">Screen Name:</label><br>
+    <input type="text" id="accountFirstname" name="account_firstname" readonly value="<%= locals.account_firstname %>"><br>
+    <label for="reviewText">Review:</label><br>
+    <textarea id="reviewText" name="review_text" rows="4" cols="50" readonly><%- review_text %></textarea>
+    <input type="hidden" name="review_id" value="<%= locals.review_id %>">
+    <input id="submit" type="submit" value="Delete Review">
+  </form>

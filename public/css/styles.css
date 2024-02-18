@@ -119,8 +119,6 @@ nav a {
   flex-direction: column;
 }
 
-
-
 #delorean-reviews li {
   margin: 10px 0;
   font-size: large;
@@ -299,6 +297,18 @@ input:required:invalid, input:focus:invalid {
   margin-left: 25%;
  }
 
+ textarea {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 15%;
+  border: solid #05bce0;
+  padding: 15px;
+  width: 95%;
+  height: 150px;
+  resize: vertical;
+  font-family: 'Monserrat', sans-serif;
+}
+
  form select {
   margin-top: 10px;
   margin-bottom: 10px;
@@ -358,4 +368,22 @@ th:nth-of-type(3) {
   text-align: center;
   margin-left: auto;
   margin-right: auto;
+}
+
+.reviewBar {
+  width: 95%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 15px;
+}
+
+.reviewCard {
+  border: solid #05bce0;
+  padding: 10px;
+  background:rgba(255,255,255,0.6);
+  margin-bottom: 5px;
+}
+
+#reviewerName {
+  font-weight: bold;
 }

@@ -15,11 +15,14 @@ const baseController = require("./controllers/baseController")
 const inventoryRoute = require("./routes/inventoryRoute")
 const invCont = require("./controllers/invController")
 const badCont = require('./controllers/bad500Controller')
+const revModel = require("./models/review-model")
+const revCont = require("./controllers/reviewController")
 const session = require("express-session")
 const pool = require('./database/')
 const accountRoute = require("./routes/accountRoute")
 const bodyParser = require("body-parser")
 const cookieParser = require("cookie-parser")
+const reviewRoute = require("./routes/reviewRoute")
 
 
 /* ***********************
@@ -69,6 +72,8 @@ app.get("/", utilities.handleErrors(baseController.buildHome))
 app.use("/inv", inventoryRoute)
 // Account routes
 app.use("/account", utilities.handleErrors(accountRoute))
+// Review routes
+app.use("/review", utilities.handleErrors(reviewRoute))
 
 // Trying to make a 500 error
 app.get("/bad", utilities.handleErrors(badCont.getBad))

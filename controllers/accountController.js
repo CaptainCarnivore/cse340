@@ -3,6 +3,7 @@ const accountModel = require("../models/account-model")
 const utilities = require("../utilities/")
 const bcrypt = require("bcryptjs")
 const jwt = require("jsonwebtoken")
+const revModel = require("../models/review-model")
 require("dotenv").config()
 
 /* ****************************************
@@ -35,9 +36,13 @@ async function buildRegister(req, res, next) {
 
 async function buildAccountHome(req, res, next) {
   let nav = await utilities.getNav()
+  let accountId = res.locals.accountData.account_id
+  const barData = await revModel.getReviewByAccountId(accountId)
+  const bar = await utilities.buildAccountReviewBar(barData)
   res.render("account/", {
     title: "Account Home",
     nav,
+    bar,
     errors: null,
   })
 }

@@ -1,6 +1,7 @@
 // Needed resources
 
 const invModel = require("../models/inventory-model")
+const revModel = require("../models/review-model")
 const utilities = require("../utilities/")
 
 const invCont = {}
@@ -35,12 +36,17 @@ invCont.buildByInventoryId = async function(req, res, next) {
   const data = await invModel.getItemByInventoryId(inventory_id)
   if (data.length > 0) {
   const detail = await utilities.buildItemDetailView(data[0])
+  const barData = await revModel.getReviewByInvId(inventory_id)
+  const bar = await utilities.buildItemReviewBar(barData)
   let nav = await utilities.getNav()
   const className = data[0].inv_year + " " + data[0].inv_make + " " + data[0].inv_model
   res.render("./inventory/detail", {
     title: className,
     nav,
     detail,
+    bar,
+    hiddenInvId: data[0].inv_id,
+    errors: null
   })
 } else {
   const err = new Error("Sorry, we appear to have lost that page.");
@@ -236,7 +242,7 @@ invCont.updateInventory = async function (req, res, next) {
   if (updateResult) {
     const itemName = updateResult.inv_make + " " + updateResult.inv_model
     req.flash("notice", `The ${itemName} was successfully updated.`)
-    res.redirect("/inv/management")
+    res.redirect("/inv/")
   } else {
     const selectList = await utilities.getClassSelect()
     const itemName = `${inv_make} ${inv_model}`
@@ -317,7 +323,7 @@ invCont.deleteInventory = async function (req, res, next) {
   )
   if (updateResult) {
     req.flash("notice", `The vehicle was successfully deleted.`)
-    res.redirect("/inv/management")
+    res.redirect("/inv/")
   } else {
     const selectList = await utilities.getClassSelect()
     const itemName = `${inv_make} ${inv_model}`

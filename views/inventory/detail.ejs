@@ -6,6 +6,30 @@
       res.redirect('/')
     } %>
 
-<% messages() %>
+<%- messages() %>
+
+<% if (errors) { %>
+  <ul class="notice">
+  <% errors.array().forEach(error => { %>
+   <li><%= error.msg %></li>
+  <%  }) %>
+  </ul>
+  <% } %>
 
 <%- detail %>
+<%- bar %>
+<%  if(!locals.loggedin){ %>
+  <p><a title="Click to log in" href="/account/login">Login</a> to write a review </p>
+  <% } %>
+<%  if(locals.loggedin){ %>
+  <form id="addReview" action="/review/add_review" method="post">
+    <h2>Add Your Own Review</h2>
+    <label for="accountFirstname">Screen Name:</label><br>
+    <input type="text" id="accountFirstname" name="account_firstname" readonly value="<%= locals.accountData.account_firstname %>"><br>
+    <label for="reviewText">Review:</label><br>
+    <textarea id="reviewText" name="review_text" wrap="hard" rows="4" cols="50"></textarea>
+    <input type="hidden" name="account_id" value="<%= locals.accountData.account_id %>">
+    <input type="hidden" name="inv_id" value="<%= hiddenInvId %>">
+    <input id="submit" type="submit" value="Submit Review">
+  </form>
+<% } %>

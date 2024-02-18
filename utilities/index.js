@@ -1,4 +1,5 @@
 const invModel = require("../models/inventory-model")
+const revModel = require("../models/review-model")
 const jwt = require("jsonwebtoken")
 require("dotenv").config()
 const Util = {}
@@ -154,5 +155,73 @@ Util.checkAccountType = (req, res, next) => {
       return res.redirect("/")
     }
 }
+
+/* ****************************************
+ *  Build review bar on detail page
+ * ************************************ */
+Util.buildItemReviewBar = async function(data){
+  let bar
+  if(data.length > 0){
+    bar = '<section class="reviewBar">' + '<h2>Customer Reviews</h2>'
+    data.forEach(review => {
+      bar += '<div class="reviewCard">' + '<span id="reviewerName">' + review.account_firstname + '</span> wrote on ' + review.review_date + '<hr>'
+      bar += '<p id="reviewText">"' + review.review_text + '"</p>'
+      bar += '</div>'
+    })
+    bar += '</section>'
+  } else {
+    bar = '<section class="reviewBarItem">' 
+    bar += '<h2>Customer Reviews</h2>' + "Be the first to write a review"
+    bar += '</section>'
+  }
+  return bar
+}
+
+
+/* ****************************************
+ *  Build review bar on account page
+ * ************************************ */
+Util.buildAccountReviewBar = async function(data){
+  let bar = '<h2>My Reviews</h2>' 
+  if(data.length > 0){
+    bar += '<ul class="reviewBarAccount">'
+    data.forEach(review => {
+      bar += '<li>' + 'Reviewed the ' + review.inv_year + ' ' + review.inv_make + ' '
+      bar += review.inv_model + ' on ' + review.review_date.toDateString() + ' | '
+      bar += '<a href="../review/edit/' + review.review_id + '"> Edit </a> | '
+      bar += '<a href="../review/delete/' + review.review_id + '"> Delete </a>'
+      bar += '</li>'
+    })
+    bar += '</ul>'
+  } else {
+    bar += '<p>You have not submitted any reviews</p>'
+  }
+  return bar
+}
+
+
+/* **************************************
+* Build the review edit view HTML
+* ************************************ */
+
+Util.buildReviewEditView = async function(data){
+  let detail
+  if(data){
+    detail = '<h3>Review created on ' + data.review_date.toDateString() + '</h3>'
+    detail += '<form id="addReview" action="/review/update" method="post">'
+    detail += '<label for="accountFirstname">Screen Name:</label><br>'
+    detail += '<input type="text" id="accountFirstname" name="account_firstname" readonly value="' + data.account_firstname + '"><br>'
+    detail += '<label for="reviewText">Review:</label><br>'
+    detail += '<textarea id="reviewText" name="review_text" rows="4" cols="50">' +data.review_text + '</textarea>'
+    detail += '<input type="hidden" name="account_id" value="' + data.account_id + '">'
+    detail += '<input type="hidden" name="inv_id" value="' + data.inv_id + '">'
+    detail += '<input type="hidden" name="review_id" value="' + data.review_id + '">'
+    detail += '<input id="submit" type="submit" value="Update Review">'
+  } else {
+    detail = '<p class="notice">Sorry, no matching vehicle could be found.</p>'
+  }
+  return detail
+}
+
 
 module.exports = Util
